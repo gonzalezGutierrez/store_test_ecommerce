@@ -1,12 +1,10 @@
 <template>
     <div>
         <HeaderComponent></HeaderComponent>
-
         <main class="l-main">
             <router-view></router-view>
             <FooterComponent></FooterComponent>
         </main>
-
     </div>
 </template>
 
@@ -20,6 +18,18 @@ export default {
         HeaderComponent,
         FooterComponent
     },
+    data() {
+        return {
+            loader:'',
+        }
+    },
+    mounted(){
+
+    },
+    created(){
+
+    },
+
 }
 </script>
 

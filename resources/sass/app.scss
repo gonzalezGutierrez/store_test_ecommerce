@@ -1,6 +1,7 @@
 @import "_variables";
 @import "_general";
 @import "layout";
+@import '~vue-loading-overlay/dist/vue-loading.css';
 
 
 .l-header {
@@ -346,6 +347,8 @@
     color:$dark-color-light;
     font-size: $small-font-size;
 }
+
+/**************************************/
 
 
 /**************************************/

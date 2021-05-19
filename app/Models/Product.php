@@ -13,17 +13,23 @@ use Illuminate\Support\Str;
  */
 class Product extends Model
 {
+
     use HasFactory;
 
     protected $table = 'products';
     protected $primaryKey = 'id';
-    protected $fillable = ['name','description','price','status','slug'];
+    protected $fillable = ['name','description','price','status','slug','category_id'];
 
     public $allowedSorts = ['name','price'];
 
     protected $casts = [
         'id'=>'string'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 
     public function scopeFilter(Builder $query)
     {
@@ -44,9 +50,9 @@ class Product extends Model
         return $query->where('name','LIKE',"%{$value}%");
     }
 
-    public function scopeNews(Builder $query)
+    public function scopeNews(Builder $query,$value)
     {
-        return $query->take(8);
+        return $query->take(6);
     }
 
     public function scopeFeatured(Builder $query , $value)

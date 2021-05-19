@@ -34,51 +34,8 @@
         <section class="featured section" id="feature">
             <h2 class="section-title">FEATURED PRODUCTS</h2>
             <a href="" class="section-all">View all</a>
-            <div class="featured__container bd-grid">
-                <div class="featured__product">
-                    <div class="featured__box">
-                        <div class="featured__new">NEW</div>
-                        <img src="/img/feature1.png" alt="">
-                    </div>
-                    <div class="featured__data">
-                        <h3 class="featured__name">Headphone One Black</h3>
-                        <span class="featured__price">$29</span>
-                    </div>
-                </div>
 
-                <div class="featured__product">
-                    <div class="featured__box">
-                        <div class="featured__new">NEW</div>
-                        <img src="/img/feature4.png" alt="">
-                    </div>
-                    <div class="featured__data">
-                        <h3 class="featured__name">Smartwatch F9 Negro</h3>
-                        <span class="featured__price">$99</span>
-                    </div>
-                </div>
-
-                <div class="featured__product">
-                    <div class="featured__box">
-                        <div class="featured__new">NEW</div>
-                        <img src="/img/feature3.png" alt="">
-                    </div>
-                    <div class="featured__data">
-                        <h3 class="featured__name">Apple Air Pods </h3>
-                        <span class="featured__price">$122</span>
-                    </div>
-                </div>
-
-                <div class="featured__product">
-                    <div class="featured__box">
-                        <div class="featured__new">NEW</div>
-                        <img src="/img/feature2.png" alt="">
-                    </div>
-                    <div class="featured__data">
-                        <h3 class="featured__name">Speaker Beats Pill </h3>
-                        <span class="featured__price">$199</span>
-                    </div>
-                </div>
-            </div>
+            <ProductsFeaturedCompontent></ProductsFeaturedCompontent>
         </section>
 
         <section class="offer section">
@@ -94,47 +51,12 @@
         </section>
 
         <section id="new" class="new section">
+
             <h2 class="section-title">NEW ARRIVALS</h2>
             <a href="" class="section-all">View All</a>
 
-            <div class="new__container bd-grid">
-                <div class="new__box">
-                    <img src="/img/new1.png" alt="">
-                    <div class="new__link">
-                        <a href="" class="button">VIEW PRODUCTS</a>
-                    </div>
-                </div>
-                <div class="new__box">
-                    <img src="/img/new2.png" alt="">
-                    <div class="new__link">
-                        <a href="" class="button">VIEW PRODUCTS</a>
-                    </div>
-                </div>
-                <div class="new__box">
-                    <img src="/img/new3.png" alt="">
-                    <div class="new__link">
-                        <a href="" class="button">VIEW PRODUCTS</a>
-                    </div>
-                </div>
-                <div class="new__box">
-                    <img src="/img/new4.png" alt="">
-                    <div class="new__link">
-                        <a href="" class="button">VIEW PRODUCTS</a>
-                    </div>
-                </div>
-                <div class="new__box">
-                    <img src="/img/new5.png" alt="">
-                    <div class="new__link">
-                        <a href="" class="button">VIEW PRODUCTS</a>
-                    </div>
-                </div>
-                <div class="new__box">
-                    <img src="/img/new6.png" alt="">
-                    <div class="new__link">
-                        <a href="" class="button">VIEW PRODUCTS</a>
-                    </div>
-                </div>
-            </div>
+            <ProductsNewsComponent></ProductsNewsComponent>
+
         </section>
 
         <section class="newsletter section" id="suscribed">
@@ -173,8 +95,18 @@
 </template>
 
 <script>
+
+//COMPONENTS
+import ProductsNewsComponent from "../../../components/Products/NewArrivals/ProductsNewsComponent";
+import ProductsFeaturedCompontent from "../../../components/Products/FeaturedProducts/ProductsFeaturedCompontent";
+
 export default {
-    name: "HomeComponent"
+    name: "HomeComponent",
+    components:{
+        ProductsNewsComponent,
+        ProductsFeaturedCompontent
+    },
+
 }
 </script>
 

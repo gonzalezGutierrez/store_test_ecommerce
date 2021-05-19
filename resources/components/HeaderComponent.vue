@@ -6,7 +6,7 @@
             </div>
             <div class="nav__menu" :class="[showMenu ? 'show' : '']" id="nav-menu">
                 <ul class="nav__list">
-                    <li class="nav__item"><a href="#home" @click="toggleMenu" class="nav__link">Home</a></li>
+                    <li class="nav__item"><router-link to="/" @click="toggleMenu" class="nav__link">Home</router-link></li>
                     <li class="nav__item"><a href="#feature" @click="toggleMenu" class="nav__link">Feature</a></li>
                     <li class="nav__item"><a href="#new" @click="toggleMenu" class="nav__link">New</a></li>
                     <li class="nav__item"><a href="#suscribed" @click="toggleMenu" class="nav__link">Suscribed</a></li>

@@ -1,14 +1,11 @@
 <?php
 
-
 namespace App\Services\Products;
-
 
 use App\Http\Resources\Products\ProductCollection;
 use App\Http\Resources\Products\ProductResource;
 use App\Models\Product;
 use App\Services\BaseServiceInterface;
-use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 
@@ -63,7 +60,7 @@ class ProductService implements  BaseServiceInterface
 
         $product = Product::where('id',$id)->first();
 
-        Product::update($request);
+        $product->update($request);
 
         return response()->json('Product updated successfully',Response::HTTP_OK);
     }
