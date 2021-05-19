@@ -43,5 +43,7 @@ Route::group(['prefix'=>'v1'],function(){
     });
 
     Route::get('products',[\App\Http\Controllers\API\Products\ProductController::class,'index']);
+    Route::get('products/search/{filter?}',[\App\Http\Controllers\API\Products\ProductController::class,'search']);
+    Route::get('products/sort/{sort?}',[\App\Http\Controllers\API\Products\ProductController::class,'sort']);
     Route::get('products/{product}',[\App\Http\Controllers\API\Products\ProductController::class,'show']);
 });

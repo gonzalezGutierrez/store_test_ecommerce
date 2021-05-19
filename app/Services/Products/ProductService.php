@@ -8,16 +8,35 @@ use App\Http\Resources\Products\ProductCollection;
 use App\Http\Resources\Products\ProductResource;
 use App\Models\Product;
 use App\Services\BaseServiceInterface;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 
 class ProductService implements  BaseServiceInterface
 {
-    
+
     public function getAll(): ProductCollection
     {
         $products = Product::where('status',1)
             ->orderBy('id','DESC')
+            ->paginate(10);
+
+        return new ProductCollection($products);
+    }
+
+    public function search(): ProductCollection
+    {
+        $products = Product::where('status',1)
+            ->orderBy('id','DESC')
+            ->filter();
+
+        return new ProductCollection($products);
+    }
+
+    public function sort():ProductCollection
+    {
+        $products = Product::where('status',1)
+            ->sort()
             ->paginate(10);
 
         return new ProductCollection($products);

@@ -15,6 +15,16 @@ class ProductController extends Controller
         return $productService->getAll();
     }
 
+    public function search(ProductService $productService)
+    {
+        return $productService->search();
+    }
+
+    public function sort(ProductService $productService)
+    {
+        return $productService->sort();
+    }
+
     public function store(ProductStoreRequest $request,ProductService $productService): \Illuminate\Http\JsonResponse
     {
         $validatedData = $request->validated();

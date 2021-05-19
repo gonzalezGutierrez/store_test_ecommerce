@@ -9,6 +9,8 @@ interface BaseServiceInterface
 
     public function getAll();
 
+    public function search();
+
     public function getOne($id);
 
     public function store($request);
