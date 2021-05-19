@@ -13,8 +13,7 @@ use Illuminate\Support\Str;
 
 class ProductService implements  BaseServiceInterface
 {
-
-
+    
     public function getAll(): ProductCollection
     {
         $products = Product::where('status',1)
@@ -63,7 +62,6 @@ class ProductService implements  BaseServiceInterface
 
     private function generateSlug($name): string
     {
-
         $slug = Str::slug($name);
         $newSlug = $slug;
         $next = 2;
@@ -75,6 +73,5 @@ class ProductService implements  BaseServiceInterface
         }
 
         return $newSlug;
-
     }
 }
