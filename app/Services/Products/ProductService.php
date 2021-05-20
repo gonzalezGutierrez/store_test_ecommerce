@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services\Products;
-
 
 use App\Http\Resources\Products\ProductCollection;
 use App\Http\Resources\Products\ProductResource;
@@ -14,11 +12,28 @@ use Illuminate\Support\Str;
 class ProductService implements  BaseServiceInterface
 {
 
-
     public function getAll(): ProductCollection
     {
         $products = Product::where('status',1)
             ->orderBy('id','DESC')
+            ->paginate(10);
+
+        return new ProductCollection($products);
+    }
+
+    public function search(): ProductCollection
+    {
+        $products = Product::where('status',1)
+            ->orderBy('id','DESC')
+            ->filter();
+
+        return new ProductCollection($products);
+    }
+
+    public function sort():ProductCollection
+    {
+        $products = Product::where('status',1)
+            ->sort()
             ->paginate(10);
 
         return new ProductCollection($products);
@@ -45,7 +60,7 @@ class ProductService implements  BaseServiceInterface
 
         $product = Product::where('id',$id)->first();
 
-        Product::update($request);
+        $product->update($request);
 
         return response()->json('Product updated successfully',Response::HTTP_OK);
     }
@@ -63,7 +78,6 @@ class ProductService implements  BaseServiceInterface
 
     private function generateSlug($name): string
     {
-
         $slug = Str::slug($name);
         $newSlug = $slug;
         $next = 2;
@@ -75,6 +89,5 @@ class ProductService implements  BaseServiceInterface
         }
 
         return $newSlug;
-
     }
 }

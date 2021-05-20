@@ -14,13 +14,13 @@ class ProductResource extends JsonResource
         return [
             'type'=>'products',
             'id'=>$this->id,
-            'attributes'=>[
-                'name'=>$this->name,
-                'slug'=>$this->slug,
-                'price'=>$this->price,
-                'description'=>$this->description,
-                'created_at'=>$this->created_at
-            ],
+            'name'=>$this->name,
+            'category_id'=>$this->category->id,
+            'category'=>$this->category->name,
+            'slug'=>$this->slug,
+            'price'=>$this->price,
+            'description'=>$this->description,
+            'created_at'=>$this->created_at,
             'links'=>[
                 'self'=>url('products.show',$this)
             ]

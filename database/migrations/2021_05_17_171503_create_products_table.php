@@ -19,6 +19,10 @@ class CreateProductsTable extends Migration
             $table->string('slug')->unique();
             $table->longText('description');
             $table->integer('price');
+
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
+
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

@@ -15,13 +15,23 @@ class ProductController extends Controller
         return $productService->getAll();
     }
 
+    public function search(ProductService $productService): \App\Http\Resources\Products\ProductCollection
+    {
+        return $productService->search();
+    }
+
+    public function sort(ProductService $productService): \App\Http\Resources\Products\ProductCollection
+    {
+        return $productService->sort();
+    }
+
     public function store(ProductStoreRequest $request,ProductService $productService): \Illuminate\Http\JsonResponse
     {
         $validatedData = $request->validated();
         return $productService->store($validatedData);
     }
 
-    public function show(ProductService $productService,$id): \App\Http\Resources\Products\ProductResource
+    public function show(ProductService $productService,$id,$slug): \App\Http\Resources\Products\ProductResource
     {
         return $productService->getOne($id);
     }
