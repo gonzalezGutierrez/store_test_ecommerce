@@ -2,7 +2,7 @@
     <router-link :to="{name:'product_detail',params:{'product_id':product.id,'product_slug':product.slug}}">
     <div class="featured__product">
         <div class="featured__box">
-            <div class="featured__new">NEW</div>
+            <div class="featured__new">{{product.category}}</div>
             <img src="/img/feature1.png" alt="">
         </div>
         <div class="featured__data">

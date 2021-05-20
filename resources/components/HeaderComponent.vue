@@ -7,14 +7,15 @@
             <div class="nav__menu" :class="[showMenu ? 'show' : '']" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__item"><router-link to="/" @click="toggleMenu" class="nav__link">Home</router-link></li>
-                    <li class="nav__item"><a href="#feature" @click="toggleMenu" class="nav__link">Feature</a></li>
-                    <li class="nav__item"><a href="#new" @click="toggleMenu" class="nav__link">New</a></li>
-                    <li class="nav__item"><a href="#suscribed" @click="toggleMenu" class="nav__link">Suscribed</a></li>
+                    <li class="nav__item"><a href="#feature" @click="toggleMenu" class="nav__link">Shop</a></li>
+                    <li class="nav__item"><a href="#new" @click="toggleMenu" class="nav__link">Men</a></li>
+                    <li class="nav__item"><a href="#suscribed" @click="toggleMenu" class="nav__link">Women</a></li>
                 </ul>
             </div>
 
             <div>
-                <i class="bx bx-cart nav__cart"></i>
+                <i class='bx bxs-user-circle user__auth' ></i>
+                <i class='bx bxs-shopping-bags nav__cart'></i>
                 <i class="bx bx-menu nav__toggle" @click="toggleMenu" id="nav-toggle"></i>
             </div>
         </nav>

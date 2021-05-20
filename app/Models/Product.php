@@ -26,7 +26,7 @@ class Product extends Model
         'id'=>'string'
     ];
 
-    public function category()
+    public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
@@ -45,22 +45,27 @@ class Product extends Model
             : $query->paginate(10);
     }
 
-    public function scopeName(Builder $query , $value)
+    public function scopeName(Builder $query , $value): Builder
     {
         return $query->where('name','LIKE',"%{$value}%");
     }
 
-    public function scopeNews(Builder $query,$value)
+    public function scopeNews(Builder $query,$value): Builder
     {
         return $query->take(6);
     }
 
-    public function scopeFeatured(Builder $query , $value)
+    public function scopeFeatured(Builder $query , $value): Builder
     {
         return $query->inRandomOrder()->take(4);
     }
 
-    public function scopeSort(Builder $query)
+    public function scopeCategory(Builder $query,$value): Builder
+    {
+        return $query->where('category_id',$value);
+    }
+
+    public function scopeSort(Builder $query): Builder
     {
         if (!property_exists($this,'allowedSorts'))
         {

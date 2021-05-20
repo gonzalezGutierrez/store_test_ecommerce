@@ -6,7 +6,7 @@ export default  {
     },
 
     searchProducts(filter,value) {
-        return ApiConnection().get('api/v1/products/search?filter['+filter+']='+value);
+        return ApiConnection().get('/api/v1/products/search?filter['+filter+']='+value);
     },
 
     getProduct(id,slug) {

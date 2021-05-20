@@ -50,7 +50,7 @@
     font-weight: $font-bold;
 }
 
-.nav__cart {
+.nav__cart,.user__auth {
     font-size: 1.5rem;
     margin-right: $mb-2;
     cursor: pointer;
@@ -187,6 +187,7 @@
     color:$white-color;
     padding:.3rem .75rem;
     font-size: $small-font-size;
+    text-transform: uppercase;
 }
 
 .featured__data {

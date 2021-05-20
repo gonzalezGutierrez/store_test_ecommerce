@@ -90,11 +90,13 @@ export default {
 
             let id = this.$route.params.product_id;
             let slug = this.$route.params.product_slug;
+
             let response = await ProductService.getProduct(id,slug);
             this.product = response.data;
             this.isLoading = false;
 
             loader.hide();
+
         },
     }
 }

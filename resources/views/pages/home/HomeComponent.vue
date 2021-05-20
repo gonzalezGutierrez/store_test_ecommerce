@@ -17,14 +17,14 @@
                     <img src="/img/backpackMan.png" class="collection__img" alt="">
                     <div class="collection__data">
                         <h2 class="collection__title"><span class="collection__subtitle">Men</span> <br> BackPack</h2>
-                        <a href="" class="collection__view">View Collection</a>
+                        <router-link :to="{ name:'collections',params:{'collection':'men'} }" class="collection__view">View Collection</router-link>
                     </div>
                 </div>
 
                 <div class="collection__box">
                     <div class="collection__data">
                         <h2 class="collection__title"><span class="collection__subtitle">Women</span> <br> BackPack</h2>
-                        <a href="" class="collection__view">View Collection</a>
+                        <router-link :to="{ name:'/collections',params:{'collection':'women'} }" class="collection__view">View Collection</router-link>
                     </div>
                     <img src="/img/backpackWoman.png" class="collection__img" alt="">
                 </div>
