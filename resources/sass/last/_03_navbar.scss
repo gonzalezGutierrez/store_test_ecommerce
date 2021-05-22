@@ -1,0 +1,23 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.menu-icon {
+    width: 28px;
+    margin-left: 20px;
+    display: none;
+}
+
+.cart-icon {
+    cursor: pointer;
+}
+
+.header {
+    background: radial-gradient(#fff,#ffd6d6);
+}
+
+.header .row {
+    margin-top:70px;
+}

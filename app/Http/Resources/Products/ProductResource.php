@@ -12,18 +12,12 @@ class ProductResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'type'=>'products',
             'id'=>$this->id,
             'name'=>$this->name,
-            'category_id'=>$this->category->id,
-            'category'=>$this->category->name,
             'slug'=>$this->slug,
             'price'=>$this->price,
             'description'=>$this->description,
-            'created_at'=>$this->created_at,
-            'links'=>[
-                'self'=>url('products.show',$this)
-            ]
+            'image_url'=>url('').'/images/'.$this->image_url,
         ];
     }
 }

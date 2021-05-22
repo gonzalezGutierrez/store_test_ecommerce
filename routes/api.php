@@ -31,5 +31,8 @@ Route::group(['prefix'=>'v1'],function(){
     Route::get('products/sort/{sort?}',[\App\Http\Controllers\API\Products\ProductController::class,'sort']);
     Route::get('products/{product}/{slug}',[\App\Http\Controllers\API\Products\ProductController::class,'show']);
 
+    Route::post('carts',[\App\Http\Controllers\API\Cart\CartController::class,'store']);
+    Route::post('carts/{cart_id}/items',[\App\Http\Controllers\API\Cart\CartController::class,'addItem'])->middleware('guard_cart');
+
 
 });

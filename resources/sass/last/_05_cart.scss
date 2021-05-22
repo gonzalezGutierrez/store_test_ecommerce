@@ -1,0 +1,19 @@
+.cart-page {
+    margin:80px auto;
+}
+
+.cart-info {
+    display: flex;
+    flex-wrap:wrap;
+}
+
+.total-price {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.total-price table {
+    border-top: 3px solid #ff523b;
+    width: 100%;
+    max-width: 480px;
+}

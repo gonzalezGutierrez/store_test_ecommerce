@@ -1,43 +1,80 @@
 <template>
-    <footer class="footer section">
-        <div class="footer__container bd-grid">
-            <div class="footer__box">
-                <h3 class="footer__title">BACKPACK SHOP</h3>
-                <p class="footer__deal">Products store</p>
-                <a href="#">
-                    <img src="/img/footerstore1.png" class="footer__store" alt="">
-                </a>
-                <a href="#">
-                    <img src="/img/footerstore1.png" class="footer__store" alt="">
-                </a>
-            </div>
-            <div class="footer__box">
-                <h3 class="footer__title">EXPLORE</h3>
-                <ul>
-                    <li><a href="" class="footer__link">Home</a></li>
-                    <li><a href="" class="footer__link">Featured</a></li>
-                    <li><a href="" class="footer__link">New</a></li>
-                    <li><a href="" class="footer__link">Suscribe</a></li>
-                </ul>
-            </div>
-            <div class="footer__box">
-                <h3 class="footer__title">OUR SERVICES</h3>
-                <ul>
-                    <li><a href="" class="footer__link">Pricing</a></li>
-                    <li><a href="" class="footer__link">Free Shipping</a></li>
-                    <li><a href="" class="footer__link">Gift Cards</a></li>
-                </ul>
-            </div>
+    <footer class="footer">
+        <div class="footer-area">
+            <div class="container">
+                <div class="row section_gap">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title large_title">Our Mission</h4>
+                            <p>
+                                So seed seed green that winged cattle in. Gathering thing made fly you're no
+                                divided deep moved us lan Gathering thing us land years living.
+                            </p>
+                            <p>
+                                So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved
+                            </p>
+                        </div>
+                    </div>
+                    <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title">Quick Links</h4>
+                            <ul class="list">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Shop</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">Product</a></li>
+                                <li><a href="#">Brand</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="single-footer-widget instafeed">
+                            <h4 class="footer_title">Gallery</h4>
+                            <ul class="list instafeed d-flex flex-wrap">
+                                <li><img src="img/gallery/r1.jpg" alt=""></li>
+                                <li><img src="img/gallery/r2.jpg" alt=""></li>
+                                <li><img src="img/gallery/r3.jpg" alt=""></li>
+                                <li><img src="img/gallery/r5.jpg" alt=""></li>
+                                <li><img src="img/gallery/r7.jpg" alt=""></li>
+                                <li><img src="img/gallery/r8.jpg" alt=""></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title">Contact Us</h4>
+                            <div class="ml-40">
+                                <p class="sm-head">
+                                    <span class="fa fa-location-arrow"></span>
+                                    Head Office
+                                </p>
+                                <p>123, Main Street, Your City</p>
 
-            <div class="footer__box">
-                <h3 class="footer__title">FOLLOW</h3>
-                <a href="" class="footer__social"><i class="bx bxl-facebook-square"></i></a>
-                <a href="" class="footer__social"><i class="bx bxl-instagram-alt"></i></a>
-                <a href="" class="footer__social"><i class="bx bxl-twitter"></i></a>
-            </div>
+                                <p class="sm-head">
+                                    <span class="fa fa-phone"></span>
+                                    Phone Number
+                                </p>
+                                <p>
+                                    +123 456 7890 <br>
+                                    +123 456 7890
+                                </p>
 
+                                <p class="sm-head">
+                                    <span class="fa fa-envelope"></span>
+                                    Email
+                                </p>
+                                <p>
+                                    free@infoexample.com <br>
+                                    www.infoexample.com
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <p class="footer__copy">&#169; 2021 copyright all right reserved</p>
+
     </footer>
 </template>
 

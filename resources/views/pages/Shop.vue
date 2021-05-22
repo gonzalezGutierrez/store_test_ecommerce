@@ -24,11 +24,23 @@ export default {
         }
     },
     mounted(){
-
+        this.initCartFactory();
     },
     created(){
 
     },
+
+    methods:{
+        async initCartFactory() {
+
+            let haveShoppingCart = this.$store.getters['cart/haveShoppingCart'];
+
+            if (!haveShoppingCart) {
+                await this.$store.dispatch('cart/createCart');
+            }
+
+        }
+    }
 
 }
 </script>

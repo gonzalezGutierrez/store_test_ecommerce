@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\Products;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductStoreRequest;
+use App\Http\Requests\ProductUpdateRequest;
 use App\Services\Products\ProductService;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,7 @@ class ProductController extends Controller
         return $productService->getOne($id);
     }
 
-    public function update(ProductStoreRequest $request,ProductService $productService,$id): \Illuminate\Http\JsonResponse
+    public function update(ProductUpdateRequest $request,ProductService $productService,$id): \Illuminate\Http\JsonResponse
     {
         $validatedData  = $request->validated();
         return $productService->update($validatedData,$id);

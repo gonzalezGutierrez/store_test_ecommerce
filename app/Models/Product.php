@@ -18,7 +18,7 @@ class Product extends Model
 
     protected $table = 'products';
     protected $primaryKey = 'id';
-    protected $fillable = ['name','description','price','status','slug','category_id'];
+    protected $fillable = ['name','description','price','status','slug','image_url'];
 
     public $allowedSorts = ['name','price'];
 

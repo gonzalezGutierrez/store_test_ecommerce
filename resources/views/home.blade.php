@@ -9,7 +9,11 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{asset('vendors/bootstrap/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('vendors/fontawesome/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('vendors/themify-icons/themify-icons.css')}}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
@@ -19,9 +23,9 @@
         <Shop></Shop>
     </div>
 
+    <script src="{{asset('vendors/jquery/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{asset('vendors/bootstrap/bootstrap.bundle.min.js')}}"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <script src="{{asset('js/main.js')}}"></script>
 
 </body>
 </html>

@@ -26,7 +26,8 @@ class ProductStoreRequest extends FormRequest
         return [
             'name'=>['required'],
             'description'=>['required'],
-            'price'=>['required','digits_between:1,5','regex:/^\d+(\.\d{1,2})?$/']
+            'price'=>['required','digits_between:1,5','regex:/^\d+(\.\d{1,2})?$/'],
+            'image'=>['required']
         ];
     }
 }

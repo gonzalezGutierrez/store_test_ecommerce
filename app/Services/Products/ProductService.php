@@ -4,6 +4,7 @@ namespace App\Services\Products;
 
 use App\Http\Resources\Products\ProductCollection;
 use App\Http\Resources\Products\ProductResource;
+use Illuminate\Support\Facades\File;
 use App\Models\Product;
 use App\Services\BaseServiceInterface;
 use Illuminate\Http\Response;
@@ -16,7 +17,7 @@ class ProductService implements  BaseServiceInterface
     {
         $products = Product::where('status',1)
             ->orderBy('id','DESC')
-            ->paginate(10);
+            ->paginate(8);
 
         return new ProductCollection($products);
     }
@@ -47,7 +48,10 @@ class ProductService implements  BaseServiceInterface
 
     public function store($request): \Illuminate\Http\JsonResponse
     {
+
         $request['slug'] = $this->generateSlug($request['name']);
+
+        $request['image_url'] = $this->handleUploadImage($request['image']);
 
         Product::create($request);
 
@@ -56,9 +60,12 @@ class ProductService implements  BaseServiceInterface
 
     public function update($request, $id): \Illuminate\Http\JsonResponse
     {
+
         $request['slug'] = $this->generateSlug($request['name']);
 
         $product = Product::where('id',$id)->first();
+
+        //$request['image_url'] = $this->handleUpdateUploadImage($request['image'],$product);
 
         $product->update($request);
 
@@ -74,6 +81,31 @@ class ProductService implements  BaseServiceInterface
 
         return response()->json('Product deleted successfully',Response::HTTP_OK);
 
+    }
+
+    private function handleUploadImage($image): string
+    {
+        $imageUrl = time().'.'.$image->extension();
+        $image->move(public_path('images'), $imageUrl);
+        return $imageUrl;
+    }
+
+    private function handleUpdateUploadImage($image , $product) {
+
+        if (!is_null($image)) {
+            $this->deleteImage($product->image_url);
+            $imageUrl = time().'.'.$image->extension();
+            $image->move(public_path('images'), $imageUrl);
+            return $imageUrl;
+        }
+        return $product->image_url;
+    }
+
+    public function deleteImage($image)
+    {
+        if(File::exists($image)) {
+            File::delete($image);
+        }
     }
 
     private function generateSlug($name): string

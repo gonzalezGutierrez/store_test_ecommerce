@@ -58,4 +58,9 @@ class UserService implements \App\Services\BaseServiceInterface
         $user = Auth::user();
         return new UserResource($user);
     }
+
+    public function search()
+    {
+        // TODO: Implement search() method.
+    }
 }

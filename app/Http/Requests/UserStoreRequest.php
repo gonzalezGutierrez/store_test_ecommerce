@@ -27,8 +27,7 @@ class UserStoreRequest extends FormRequest
             'name'=>['required'],
             'email'=>['required','email','unique:users,email'],
             'password'=>['required','min:8'],
-            'password_confirmation'=>['required','same:password'],
-            'role_id'=>['required']
+            'password_confirmation'=>['required','same:password']
         ];
     }
 }

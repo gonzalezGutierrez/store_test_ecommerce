@@ -22,15 +22,15 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
-        $categories = Category::all();
+
 
         return [
             'name'=>$this->faker->name,
             'slug'=>$this->faker->slug,
             'price'=>$this->faker->numberBetween(100,300),
+            'image_url'=>$this->faker->imageUrl('400','400'),
             'description'=>$this->faker->text,
-            'status'=>$this->faker->boolean,
-            'category_id'=>$categories->random()
+            'status'=>$this->faker->boolean
         ];
 
     }
