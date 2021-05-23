@@ -41,11 +41,19 @@ const  mutations = {
     },
 
     incrementsCounter(state,numItems) {
-        state.counter = state.counter + numItems;
+        state.counter = parseInt( state.counter ) + numItems;
+        localStorage.setItem('cart_count',state.counter);
     },
 
     decrementCart(state, numItems) {
         state.counter = state.counter - numItems;
+    },
+
+    cleanCounter(state) {
+        state.counter = 0;
+        state.cartId = null;
+        localStorage.setItem('cart_count','0');
+        localStorage.removeItem('cart_id',null);
     }
 
 };
@@ -77,6 +85,14 @@ const actions = {
     },
     decrementCart(context , numItems) {
         context.commit('decrementCart',numItems);
+    },
+    clearCart(context) {
+        context.commit('cleanCounter');
+
+        context.dispatch('createCart').then(response=>{
+            console.log(response);
+        });
+        
     }
 
 }

@@ -20,6 +20,12 @@ return [
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
     ],
 
+    'openpay'=>[
+        'id'=>env('OPEN_PAY_ID'),
+        'sk'=>env('OPEN_PAY_SK'),
+        'mode'=>env('OPEN_PAY_MODE')
+    ],
+
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],

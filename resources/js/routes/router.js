@@ -15,6 +15,7 @@ import ProductEditAdminPage from "../../views/admin/products/ProductEditAdminPag
 import ProductCreateAdminPage from "../../views/admin/products/ProductCreateAdminPage";
 import UserListAdminPage from "../../views/admin/users/UserListAdminPage";
 import UserEditAdminPage from "../../views/admin/users/UserEditAdminPage";
+import CheckoutPage from "../../views/pages/CheckoutPage";
 
 
 Vue.use(VueRouter);
@@ -67,6 +68,10 @@ const router = new VueRouter({
 
         {
             path:'/cart' , component:CartPage, name:'cart'
+        },
+
+        {
+            path:'/checkout' , component: CheckoutPage, name:'checkout'
         },
 
         {

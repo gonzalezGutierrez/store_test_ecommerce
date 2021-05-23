@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 /**
  * @method static create($request)
  * @method static where(string $string, $id)
+ * @method static findOrFail($product_id)
  */
 class Product extends Model
 {

@@ -9,6 +9,8 @@ use phpDocumentor\Reflection\Types\Integer;
 
 /**
  * @method static create(array $array)
+ * @method products()
+ * @method static findOrFail($cartId)
  */
 class Cart extends Model
 {
@@ -20,31 +22,36 @@ class Cart extends Model
 
     protected $fillable = ['user_id'];
 
-    public function items()
+    public function items(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->join('item_carts','carts.id','item_carts.cart_id')
-            ->join('products','item_carts.product_id','products.id')
-            ->groupBy(
-                'products.id',
-                'products.name',
-                'item_carts.price'
-            )
-            ->orderBy('item_carts.created_at','DESC')
-            ->select(
-                DB::raw('sum(item_carts.amount) amount,sum(item_carts.subtotal)  subtotal,products.name  product,products.id  productId,item_carts.price')
-            )
+        return $this->belongsToMany(Product::class,'item_carts')
+            ->withPivot('subtotal','amount','price')
+            ->withTimestamps();
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function getItems()
+    {
+        return $this->items()
+            ->selectRaw('
+                products.id,
+                products.name,
+                products.slug,
+                products.image_url,
+                item_carts.price,
+                sum(item_carts.amount) amount,
+                sum(item_carts.subtotal) subtotal
+            ')
+            ->groupBy('item_carts.product_id','item_carts.amount','item_carts.subtotal')
             ->get();
     }
 
-    public function products()
+    public function total()
     {
-        return $this->belongsToMany(Product::class,'item_carts','product_id')
-            ->withPivot('subtotal','amount','price');
-    }
-
-    public function total() : Integer
-    {
-        return $this->items()->sum('subtotal');
+        return $this->getItems()->sum('subtotal');
     }
 
 }

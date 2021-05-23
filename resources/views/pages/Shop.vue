@@ -33,7 +33,13 @@ export default {
     methods:{
         async initCartFactory() {
 
+            //this.$store.dispatch('cart/clearCart');
+
             let haveShoppingCart = this.$store.getters['cart/haveShoppingCart'];
+
+            console.log("have?");
+
+            console.log(haveShoppingCart);
 
             if (!haveShoppingCart) {
                 await this.$store.dispatch('cart/createCart');

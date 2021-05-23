@@ -34,6 +34,11 @@ Vue.use(VueSweetalert2, options);
 import { VuejsDatatableFactory } from 'vuejs-datatable';
 Vue.use( VuejsDatatableFactory );
 
+
+import VueToast from 'vue-toast-notification';
+Vue.use(VueToast);
+
+
 router.beforeEach(async (to,from,next) => {
 
 
