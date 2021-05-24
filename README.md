@@ -11,12 +11,12 @@
 
 <a href="https://www.openpay.mx/">resource: https://www.openpay.mx/</a>
 
-#Sanbox Account:
+# Sanbox Account:
 
 email:jesusgeneral2021@gmail.com <br>
 password:Programacionweb_25
 
-#Cards Availables with Mode Sanbox
+# Cards Availables with Mode Sanbox
 
 card / credit card : 4111111111111111 <br>
 Visit de testing cards : <a href="https://www.openpay.mx/docs/testing.html">https://www.openpay.mx/docs/testing.html</a>  
@@ -26,7 +26,7 @@ Expiration Month : the expiration month must be greater than the current month
 
 cvv: 110
 
-#Run to start with the project
+# Run to start with the project
 
 - Composer install
 - copy .env.example .env
@@ -34,10 +34,10 @@ cvv: 110
 - php artisan migrate --seed
 - php artisan passport:install
 
-#default user credentials
+# default user credentials
 
-#Admin
+# Admin
 seller@test.com | sellertest
 
-#Buyer 
+# Buyer 
 buyer@test.com | buyertest
