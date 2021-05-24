@@ -4792,17 +4792,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_auth_LoginPage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../views/auth/LoginPage */ "./resources/views/auth/LoginPage.vue");
 /* harmony import */ var _views_auth_RegisterPage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../views/auth/RegisterPage */ "./resources/views/auth/RegisterPage.vue");
 /* harmony import */ var _views_pages_CartPage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../views/pages/CartPage */ "./resources/views/pages/CartPage.vue");
-/* harmony import */ var _views_admin_products_ProductListAdminPage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../views/admin/products/ProductListAdminPage */ "./resources/views/admin/products/ProductListAdminPage.vue");
-/* harmony import */ var _views_admin_products_ProductEditAdminPage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../views/admin/products/ProductEditAdminPage */ "./resources/views/admin/products/ProductEditAdminPage.vue");
-/* harmony import */ var _views_admin_products_ProductCreateAdminPage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../views/admin/products/ProductCreateAdminPage */ "./resources/views/admin/products/ProductCreateAdminPage.vue");
-/* harmony import */ var _views_admin_users_UserListAdminPage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../views/admin/users/UserListAdminPage */ "./resources/views/admin/users/UserListAdminPage.vue");
-/* harmony import */ var _views_admin_users_UserEditAdminPage__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../views/admin/users/UserEditAdminPage */ "./resources/views/admin/users/UserEditAdminPage.vue");
-/* harmony import */ var _views_pages_CheckoutPage__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../views/pages/CheckoutPage */ "./resources/views/pages/CheckoutPage.vue");
-/* harmony import */ var _views_pages_TrackingPage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../views/pages/TrackingPage */ "./resources/views/pages/TrackingPage.vue");
+/* harmony import */ var _views_pages_CheckoutPage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../views/pages/CheckoutPage */ "./resources/views/pages/CheckoutPage.vue");
+/* harmony import */ var _views_pages_TrackingPage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../views/pages/TrackingPage */ "./resources/views/pages/TrackingPage.vue");
+/* harmony import */ var _views_admin_products_ProductListAdminPage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../views/admin/products/ProductListAdminPage */ "./resources/views/admin/products/ProductListAdminPage.vue");
+/* harmony import */ var _views_admin_products_ProductEditAdminPage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../views/admin/products/ProductEditAdminPage */ "./resources/views/admin/products/ProductEditAdminPage.vue");
+/* harmony import */ var _views_admin_products_ProductCreateAdminPage__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../views/admin/products/ProductCreateAdminPage */ "./resources/views/admin/products/ProductCreateAdminPage.vue");
+/* harmony import */ var _views_admin_users_UserListAdminPage__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../views/admin/users/UserListAdminPage */ "./resources/views/admin/users/UserListAdminPage.vue");
+/* harmony import */ var _views_admin_users_UserEditAdminPage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../views/admin/users/UserEditAdminPage */ "./resources/views/admin/users/UserEditAdminPage.vue");
 /* harmony import */ var _views_pages_OrderPage__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../views/pages/OrderPage */ "./resources/views/pages/OrderPage.vue");
 /* harmony import */ var _views_pages_OrdersPage__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../views/pages/OrdersPage */ "./resources/views/pages/OrdersPage.vue");
 /* harmony import */ var _views_admin_IndexAdmin__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../views/admin/IndexAdmin */ "./resources/views/admin/IndexAdmin.vue");
 /* harmony import */ var _views_admin_orders_OrdersListAdmin__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../views/admin/orders/OrdersListAdmin */ "./resources/views/admin/orders/OrdersListAdmin.vue");
+
+
 
 
 
@@ -4822,67 +4824,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
 vue__WEBPACK_IMPORTED_MODULE_18__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_19__.default);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_19__.default({
   mode: 'history',
-  routes: [{
+  routes: [
+  /*PUBLIC ROUTES*/
+  {
     path: '/404',
     name: '404',
     component: _views_pages_PageNotFound__WEBPACK_IMPORTED_MODULE_0__.default
   }, {
     path: '*',
     redirect: '/404'
-  }, {
-    path: '/admin',
-    component: _views_admin_IndexAdmin__WEBPACK_IMPORTED_MODULE_16__.default,
-    name: 'admin',
-    meta: {
-      requiredAdmin: true
-    }
-  }, {
-    path: '/admin/products',
-    component: _views_admin_products_ProductListAdminPage__WEBPACK_IMPORTED_MODULE_7__.default,
-    name: 'adminproducts',
-    meta: {
-      requiredAdmin: true
-    }
-  }, {
-    path: '/admin/products/create',
-    component: _views_admin_products_ProductCreateAdminPage__WEBPACK_IMPORTED_MODULE_9__.default,
-    name: 'adminproductcreate',
-    meta: {
-      requiredAdmin: true
-    }
-  }, {
-    path: '/admin/users',
-    component: _views_admin_users_UserListAdminPage__WEBPACK_IMPORTED_MODULE_10__.default,
-    name: 'adminusers',
-    meta: {
-      requiredAdmin: true
-    }
-  }, {
-    path: '/admin/users/:id/edit',
-    component: _views_admin_users_UserEditAdminPage__WEBPACK_IMPORTED_MODULE_11__.default,
-    name: 'adminusersedit',
-    meta: {
-      requiredAdmin: true
-    }
-  }, {
-    path: '/admin/products/:product_id/:slug/edit',
-    component: _views_admin_products_ProductEditAdminPage__WEBPACK_IMPORTED_MODULE_8__.default,
-    name: 'adminproductsedit',
-    meta: {
-      requiredAdmin: true
-    }
-  }, {
-    path: '/admin/orders',
-    component: _views_admin_orders_OrdersListAdmin__WEBPACK_IMPORTED_MODULE_17__.default,
-    name: 'adminorders',
-    meta: {
-      requiredAdmin: true
-    }
   }, {
     path: '/',
     component: _views_pages_IndexPage__WEBPACK_IMPORTED_MODULE_1__.default,
@@ -4896,34 +4849,15 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_19__.default({
     component: _views_pages_ProductsPage__WEBPACK_IMPORTED_MODULE_3__.default,
     name: 'products'
   }, {
-    path: '/cart',
-    component: _views_pages_CartPage__WEBPACK_IMPORTED_MODULE_6__.default,
-    name: 'cart',
-    meta: {
-      requiredAuth: true
-    }
-  }, {
-    path: '/checkout',
-    component: _views_pages_CheckoutPage__WEBPACK_IMPORTED_MODULE_12__.default,
-    name: 'checkout',
-    meta: {
-      requiredAuth: true
-    }
-  }, {
     path: '/tracking',
-    component: _views_pages_TrackingPage__WEBPACK_IMPORTED_MODULE_13__.default,
+    component: _views_pages_TrackingPage__WEBPACK_IMPORTED_MODULE_8__.default,
     name: 'tracking'
   }, {
     path: '/order/:order_key',
     component: _views_pages_OrderPage__WEBPACK_IMPORTED_MODULE_14__.default,
     name: 'order'
-  }, {
-    path: '/orders',
-    component: _views_pages_OrdersPage__WEBPACK_IMPORTED_MODULE_15__.default,
-    meta: {
-      requiredAuth: true
-    }
-  }, {
+  }, //auth routes
+  {
     path: '/login',
     component: _views_auth_LoginPage__WEBPACK_IMPORTED_MODULE_4__.default,
     name: 'login',
@@ -4936,6 +4870,77 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_19__.default({
     name: 'register',
     meta: {
       guest: true
+    }
+  }, //cart and checkout
+  {
+    path: '/cart',
+    component: _views_pages_CartPage__WEBPACK_IMPORTED_MODULE_6__.default,
+    name: 'cart',
+    meta: {
+      requiredAuth: true
+    }
+  }, {
+    path: '/checkout',
+    component: _views_pages_CheckoutPage__WEBPACK_IMPORTED_MODULE_7__.default,
+    name: 'checkout',
+    meta: {
+      requiredAuth: true
+    }
+  }, {
+    path: '/orders',
+    component: _views_pages_OrdersPage__WEBPACK_IMPORTED_MODULE_15__.default,
+    meta: {
+      requiredAuth: true
+    }
+  }, //admin routes
+  {
+    path: '/admin',
+    component: _views_admin_IndexAdmin__WEBPACK_IMPORTED_MODULE_16__.default,
+    name: 'admin',
+    meta: {
+      requiredAdmin: true
+    }
+  }, {
+    path: '/admin/products',
+    component: _views_admin_products_ProductListAdminPage__WEBPACK_IMPORTED_MODULE_9__.default,
+    name: 'adminproducts',
+    meta: {
+      requiredAdmin: true
+    }
+  }, {
+    path: '/admin/products/create',
+    component: _views_admin_products_ProductCreateAdminPage__WEBPACK_IMPORTED_MODULE_11__.default,
+    name: 'adminproductcreate',
+    meta: {
+      requiredAdmin: true
+    }
+  }, {
+    path: '/admin/users',
+    component: _views_admin_users_UserListAdminPage__WEBPACK_IMPORTED_MODULE_12__.default,
+    name: 'adminusers',
+    meta: {
+      requiredAdmin: true
+    }
+  }, {
+    path: '/admin/users/:id/edit',
+    component: _views_admin_users_UserEditAdminPage__WEBPACK_IMPORTED_MODULE_13__.default,
+    name: 'adminusersedit',
+    meta: {
+      requiredAdmin: true
+    }
+  }, {
+    path: '/admin/products/:product_id/:slug/edit',
+    component: _views_admin_products_ProductEditAdminPage__WEBPACK_IMPORTED_MODULE_10__.default,
+    name: 'adminproductsedit',
+    meta: {
+      requiredAdmin: true
+    }
+  }, {
+    path: '/admin/orders',
+    component: _views_admin_orders_OrdersListAdmin__WEBPACK_IMPORTED_MODULE_17__.default,
+    name: 'adminorders',
+    meta: {
+      requiredAdmin: true
     }
   }]
 });

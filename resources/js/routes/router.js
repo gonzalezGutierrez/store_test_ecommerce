@@ -8,6 +8,8 @@ import ProductsPage from "../../views/pages/ProductsPage";
 import LoginPage from "../../views/auth/LoginPage";
 import RegisterPage from "../../views/auth/RegisterPage";
 import CartPage from "../../views/pages/CartPage";
+import CheckoutPage from "../../views/pages/CheckoutPage";
+import TrackingPage from "../../views/pages/TrackingPage";
 
 //Admin routes
 import ProductListAdminPage from "../../views/admin/products/ProductListAdminPage";
@@ -15,8 +17,6 @@ import ProductEditAdminPage from "../../views/admin/products/ProductEditAdminPag
 import ProductCreateAdminPage from "../../views/admin/products/ProductCreateAdminPage";
 import UserListAdminPage from "../../views/admin/users/UserListAdminPage";
 import UserEditAdminPage from "../../views/admin/users/UserEditAdminPage";
-import CheckoutPage from "../../views/pages/CheckoutPage";
-import TrackingPage from "../../views/pages/TrackingPage";
 import OrderPage from "../../views/pages/OrderPage";
 import OrdersPage from "../../views/pages/OrdersPage";
 import IndexAdmin from "../../views/admin/IndexAdmin";
@@ -29,6 +29,7 @@ const router = new VueRouter({
     mode:'history',
     routes:[
 
+        /*PUBLIC ROUTES*/
         {
             path: '/404',
             name: '404',
@@ -39,6 +40,62 @@ const router = new VueRouter({
             path: '*',
             redirect: '/404',
         },
+
+        {
+            path:'/', component:IndexPage,name:'index'
+        },
+
+        {
+            path:'/product/:product_id/:product_slug',  component:ProductPage , name:'product'
+        },
+
+        {
+            path:'/products', component:ProductsPage , name:'products'
+        },
+
+        {
+            path:'/tracking', component: TrackingPage , name:'tracking'
+        },
+
+        {
+            path:'/order/:order_key', component: OrderPage,  name:'order'
+        },
+
+
+        //auth routes
+        {
+            path:'/login', component:LoginPage , name:'login',meta:{
+                guest:true
+            }
+        },
+
+        {
+            path:'/register' , component:RegisterPage, name:'register',meta:{
+                guest:true
+            }
+        },
+
+
+        //cart and checkout
+        {
+            path:'/cart' , component:CartPage, name:'cart',meta:{
+                requiredAuth: true
+            }
+        },
+
+        {
+            path:'/checkout' , component: CheckoutPage, name:'checkout',meta:{
+                requiredAuth: true
+            }
+        },
+
+        {
+            path:'/orders', component:OrdersPage,meta:{
+                requiredAuth:true
+            }
+        },
+
+        //admin routes
 
         {
             path:'/admin', component:IndexAdmin, name:'admin', meta:{
@@ -81,57 +138,6 @@ const router = new VueRouter({
                 requiredAdmin:true
             }
         },
-
-        {
-            path:'/', component:IndexPage,name:'index'
-        },
-
-        {
-            path:'/product/:product_id/:product_slug',  component:ProductPage , name:'product'
-        },
-
-        {
-            path:'/products', component:ProductsPage , name:'products'
-        },
-
-        {
-            path:'/cart' , component:CartPage, name:'cart',meta:{
-                requiredAuth: true
-            }
-        },
-
-        {
-            path:'/checkout' , component: CheckoutPage, name:'checkout',meta:{
-                requiredAuth: true
-            }
-        },
-
-        {
-            path:'/tracking', component: TrackingPage , name:'tracking'
-        },
-
-        {
-            path:'/order/:order_key', component: OrderPage,  name:'order'
-        },
-
-        {
-            path:'/orders', component:OrdersPage,meta:{
-                requiredAuth:true
-            }
-        },
-
-        {
-            path:'/login', component:LoginPage , name:'login',meta:{
-                guest:true
-            }
-        },
-
-        {
-            path:'/register' , component:RegisterPage, name:'register',meta:{
-                guest:true
-            }
-        }
-
     ]
 });
 export  default router;
