@@ -258,6 +258,12 @@ export default {
                 .catch(error =>{
 
                     console.log(error);
+                    this.$toast.open({
+                        message:error.description,
+                        position:'top-right',
+                        type: 'warning',
+                        // all of other options may go here
+                    });
                     this.loading.hide();
 
                 });

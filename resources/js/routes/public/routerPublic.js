@@ -3,7 +3,7 @@ import IndexPage from "../../../views/pages/IndexPage";
 import ProductPage from "../../../views/pages/ProductPage";
 import ProductsPage from "../../../views/pages/ProductsPage";
 import CartPage from "../../../views/pages/CartPage";
-import TrackingPage from "../../../views/pages/TrakingPage";
+import TrackingPage from "../../../views/pages/TrackingPage";
 
 export default  [
     {

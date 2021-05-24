@@ -9,6 +9,7 @@ use App\Http\Resources\Orders\OrderResource;
 use App\Models\Order;
 use App\Models\ShippingAddress;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Response;
 
 class OrderService
 {
@@ -53,7 +54,7 @@ class OrderService
             'message'=>'Order Created Successfuly',
             'order_id'=>$order->id,
             'order_key'=>$order->order_key
-        ]);
+        ],Response::HTTP_CREATED);
 
     }
 

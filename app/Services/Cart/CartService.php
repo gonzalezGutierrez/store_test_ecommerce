@@ -9,14 +9,12 @@ use App\Models\Cart;
 use App\Models\ItemCart;
 use App\Models\Product;
 use App\Payments\PaymentFactory;
-use App\Services\BaseServiceInterface;
 use App\Services\Orders\OrderService;
-use App\Services\Products\ProductService;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class CartService   implements  BaseServiceInterface
+class CartService
 {
 
     public function getAll()
@@ -48,7 +46,6 @@ class CartService   implements  BaseServiceInterface
 
         $cart->fill($request)->save();
 
-        //return update cart with user_id assigment
         return $cart;
 
     }
@@ -133,6 +130,10 @@ class CartService   implements  BaseServiceInterface
             $request['cart'] = $cart;
 
             $paymentResponse = $payment->pay($request);
+
+            if (!$paymentResponse['payment_ok']) {
+                return response()->json($paymentResponse['errors'],400);
+            }
 
             $orderService = new OrderService();
 

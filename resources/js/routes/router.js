@@ -16,7 +16,7 @@ import ProductCreateAdminPage from "../../views/admin/products/ProductCreateAdmi
 import UserListAdminPage from "../../views/admin/users/UserListAdminPage";
 import UserEditAdminPage from "../../views/admin/users/UserEditAdminPage";
 import CheckoutPage from "../../views/pages/CheckoutPage";
-import TrackingPage from "../../views/pages/TrakingPage";
+import TrackingPage from "../../views/pages/TrackingPage";
 import OrderPage from "../../views/pages/OrderPage";
 import OrdersPage from "../../views/pages/OrdersPage";
 import IndexAdmin from "../../views/admin/IndexAdmin";

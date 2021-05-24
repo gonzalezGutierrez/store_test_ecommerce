@@ -25,6 +25,18 @@ export default  {
         });
     },
 
+    removeItem(cartId,item) {
+        return new Promise((resolve , reject)=> {
+            ApiConnection().delete('/api/v1/carts/'+cartId+'/items/'+item.id)
+                .then( (response) => {
+                    resolve(response.data);
+                })
+                .catch((error)=>{
+                    reject(error);
+                });
+        });
+    },
+
     getCart(cartId) {
         return new Promise((resolve , reject) => {
             ApiConnection().get('/api/v1/carts/'+cartId)
@@ -47,7 +59,7 @@ export default  {
                     resolve(response.data);
                 })
                 .catch(error =>{
-                    reject(error.response);
+                    reject(error.response.data);
                 });
         });
     }

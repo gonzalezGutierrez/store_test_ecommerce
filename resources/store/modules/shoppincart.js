@@ -57,7 +57,8 @@ const  mutations = {
     },
 
     decrementCart(state, numItems) {
-        state.counter = state.counter - numItems;
+        state.counter = parseInt( state.counter ) - parseInt(numItems);
+        localStorage.setItem('cart_count',state.counter);
     },
 
     cleanCounter(state) {

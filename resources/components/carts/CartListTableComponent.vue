@@ -17,7 +17,8 @@
                             <img style="width: 85px" :src="item.image_url" alt="">
                         </div>
                         <div class="media-body">
-                            <p>{{item.name}}</p>
+                            <p>{{item.name}}</p> <br>
+                            <a href="#" @click="deleteToCart(item)" class="text-danger"> <i class="fas fa-trash"></i> Remove</a>
                         </div>
                     </div>
                 </router-link>
@@ -83,12 +84,26 @@
 
 <script>
 
+import CartService from '../../services/cart';
+
 export default {
     name: "CartListTableComponent",
 
     props:{
         cart:{
             type:Object
+        }
+    },
+
+    methods:{
+        deleteToCart(item) {
+            let cartId = this.$store.getters['cart/getCartId'];
+
+            CartService.removeItem(cartId,item).then(response=>{
+                this.$store.dispatch('cart/decrementCart',item.amount);
+            }).catch(error => {
+                console.log(error);
+            });
         }
     }
 

@@ -85,7 +85,7 @@ export default {
 
             let item = {
                 item_id:this.productId,
-                amount:this.amount
+                amount:this.amount != '' ?  this.amount : 1
             }
 
             CartService.addItem(cartId,item)
@@ -97,7 +97,7 @@ export default {
                         type: 'success',
                         // all of other options may go here
                     });
-                    this.$store.dispatch('cart/incrementsCart',this.amount);
+                    this.$store.dispatch('cart/incrementsCart',item.amount);
                     this.$router.push({name:'cart'});
                 })
                 .catch((error)=>{
