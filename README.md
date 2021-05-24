@@ -19,7 +19,7 @@ password:Programacionweb_25
 # Cards Availables with Mode Sanbox
 
 card / credit card : 4111111111111111 <br>
-Visit de testing cards : <a href="https://www.openpay.mx/docs/testing.html">https://www.openpay.mx/docs/testing.html</a>  
+Visit de testing cards : <a href="https://www.openpay.mx/docs/testing.html">https://www.openpay.mx/docs/testing.html</a>
 
 Expiration year : the expiration year must be greater than the current year <br>
 Expiration Month : the expiration month must be greater than the current month
@@ -30,19 +30,27 @@ cvv: 110
 
 - Composer install
 - copy .env.example .env
-- php artisan key:generate 
+- php artisan key:generate
 - php artisan migrate --seed
 - php artisan passport:install
+
+# .env credentials OPENPAY
+
+OPENPAY_ID = m9zdcsf5bpnd6azrybqq
+
+OPENPAY_SK = sk_c399c0e284ed40748ac41f173ec9386a
+
+OPENPAY_PRODUCTION_MODE =  false
 
 # default user credentials
 
 # Admin
 seller@test.com | seller2021
 
-# Buyer 
+# Buyer
 buyer@test.com | buyer2021
 
-# Api documentation 
+# Api documentation
 <a href="https://documenter.getpostman.com/view/4791942/TzRXARwK">
     Documentation
 </a>
