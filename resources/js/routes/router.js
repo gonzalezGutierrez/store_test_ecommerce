@@ -16,7 +16,7 @@ import ProductCreateAdminPage from "../../views/admin/products/ProductCreateAdmi
 import UserListAdminPage from "../../views/admin/users/UserListAdminPage";
 import UserEditAdminPage from "../../views/admin/users/UserEditAdminPage";
 import CheckoutPage from "../../views/pages/CheckoutPage";
-import TrakingPage from "../../views/pages/TrakingPage";
+import TrackingPage from "../../views/pages/TrakingPage";
 import OrderPage from "../../views/pages/OrderPage";
 import OrdersPage from "../../views/pages/OrdersPage";
 import IndexAdmin from "../../views/admin/IndexAdmin";
@@ -95,7 +95,9 @@ const router = new VueRouter({
         },
 
         {
-            path:'/cart' , component:CartPage, name:'cart'
+            path:'/cart' , component:CartPage, name:'cart',meta:{
+                requiredAuth: true
+            }
         },
 
         {
@@ -105,7 +107,7 @@ const router = new VueRouter({
         },
 
         {
-            path:'/tracking', component: TrakingPage , name:'tracking'
+            path:'/tracking', component: TrackingPage , name:'tracking'
         },
 
         {

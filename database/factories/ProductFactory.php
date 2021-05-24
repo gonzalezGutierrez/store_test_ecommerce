@@ -26,7 +26,7 @@ class ProductFactory extends Factory
 
         return [
             'name'=>$this->faker->name,
-            'slug'=>$this->faker->slug,
+            'slug'=>$this->faker->slug.uniqid(),
             'price'=>$this->faker->numberBetween(100,300),
             'image_url'=>$this->faker->imageUrl('263','268'),
             'description'=>$this->faker->text,

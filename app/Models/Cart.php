@@ -45,7 +45,7 @@ class Cart extends Model
                 sum(item_carts.amount) amount,
                 sum(item_carts.subtotal) subtotal
             ')
-            ->groupBy('item_carts.product_id','item_carts.amount','item_carts.subtotal')
+            ->groupBy('item_carts.product_id')
             ->get();
     }
 

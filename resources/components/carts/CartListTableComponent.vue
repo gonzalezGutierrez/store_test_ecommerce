@@ -11,7 +11,7 @@
         <tbody>
         <tr v-for="item in cart.items">
             <td>
-                <router-link class="text-black-50" :to="{name:'product',params:{product_id:item.id,slug:item.slug}}">
+                <router-link class="text-black-50" :to="{name:'product',params:{product_id:item.id,product_slug:item.slug}}">
                     <div class="media">
                         <div class="d-flex">
                             <img style="width: 85px" :src="item.image_url" alt="">

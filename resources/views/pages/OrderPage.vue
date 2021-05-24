@@ -59,37 +59,19 @@
                         </thead>
                         <tbody>
                         <tr v-for="item in order.cart.items">
-                            <td>
-                                <p> {{ item.name }} </p>
-                            </td>
-                            <td>
-                                <h5>x {{ item.amount }}</h5>
-                            </td>
-                            <td>
-                                <p>${{ item.subtotal }} USD</p>
-                            </td>
+                            <td><p> {{ item.name }} </p></td>
+                            <td><h5>x {{ item.amount }}</h5></td>
+                            <td><p>${{ item.subtotal }} USD</p></td>
                         </tr>
                         <tr>
-                            <td>
-                                <h4>Subtotal</h4>
-                            </td>
-                            <td>
-                                <h5></h5>
-                            </td>
-                            <td>
-                                <p>${{ order.total }} USD</p>
-                            </td>
+                            <td><h4>Subtotal</h4></td>
+                            <td><h5></h5></td>
+                            <td><p>${{ order.total }} USD</p></td>
                         </tr>
                         <tr>
-                            <td>
-                                <h4>Total</h4>
-                            </td>
-                            <td>
-                                <h5></h5>
-                            </td>
-                            <td>
-                                <h4>${{ order.total }} USD</h4>
-                            </td>
+                            <td><h4>Total</h4></td>
+                            <td><h5></h5></td>
+                            <td><h4>${{ order.total }} USD</h4></td>
                         </tr>
                         </tbody>
                     </table>
@@ -111,14 +93,9 @@ export default {
             order:{}
         }
     },
-
     mounted() {
-
         this.getOrder();
-
-
     },
-
     methods:{
 
         getOrder(){
@@ -140,7 +117,6 @@ export default {
                         this.$router.push({name:'404'});
                     }
                 })
-
         },
 
     }

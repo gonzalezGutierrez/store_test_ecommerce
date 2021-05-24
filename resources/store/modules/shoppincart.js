@@ -52,7 +52,7 @@ const  mutations = {
     },
 
     incrementsCounter(state,numItems) {
-        state.counter = parseInt( state.counter ) + numItems;
+        state.counter = parseInt( state.counter ) + parseInt(numItems);
         localStorage.setItem('cart_count',state.counter);
     },
 

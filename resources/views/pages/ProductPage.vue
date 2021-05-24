@@ -19,28 +19,33 @@
                         <p class="text-justify">
                             {{ product.description }}
                         </p>
-                        <div class="product_count">
+                        <div class="product_count" style="color:#000 !important;">
                             <label for="qty">Quantity:</label>
-                            <input type="text" name="qty" id="sst" size="2" maxlength="12" value="1" title="Quantity:" class="input-text qty">
 
-                            <a class="button primary-btn" href="#">Add to Cart</a>
+                            <input type="text" name="qty" v-model="amount" value="1"  class="" style="color:#333 !important;">
+
+                            <a class="button primary-btn btn-sm" @click="addToCart" href="#">Add to Cart</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </template>
 
 <script>
 
 import ProductService from '../../services/product'
+import CartService from "../../services/cart";
 
 export default {
     name: "",
     data(){
         return {
-            product:{}
+            product:{},
+            productId:'',
+            amount:''
         }
     },
     mounted() {
@@ -54,10 +59,10 @@ export default {
                 canCancel: false,
             });
 
-            let id = this.$route.params.product_id;
+            this.productId = this.$route.params.product_id;
             let slug = this.$route.params.product_slug;
 
-            ProductService.getProduct(id,slug).then((response=>{
+            ProductService.getProduct(this.productId,slug).then((response=>{
                 this.product = response.data;
                 loader.hide();
             })).catch((error)=>{
@@ -65,6 +70,40 @@ export default {
                 loader.hide();
             });
 
+        },
+        async addToCart() {
+
+            let cartId = this.$store.getters['cart/getCartId'];
+
+            if (!this.$store.getters.isAuth) {
+                return this.$router.push({name:'login'});
+            }
+
+            let loader = this.$loading.show({
+                container: this.fullPage ? null : this.$refs.formContainer
+            });
+
+            let item = {
+                item_id:this.productId,
+                amount:this.amount
+            }
+
+            CartService.addItem(cartId,item)
+                .then((response)=>{
+                    loader.hide();
+                    this.$toast.open({
+                        message: response.message,
+                        position:'top-right',
+                        type: 'success',
+                        // all of other options may go here
+                    });
+                    this.$store.dispatch('cart/incrementsCart',this.amount);
+                    this.$router.push({name:'cart'});
+                })
+                .catch((error)=>{
+                    loader.hide();
+                    console.log(error);
+                });
         }
     }
 }

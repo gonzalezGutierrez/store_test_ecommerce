@@ -4178,24 +4178,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "OrderPage",
@@ -4298,7 +4280,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _services_product__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/product */ "./resources/services/product.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _services_product__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/product */ "./resources/services/product.js");
+/* harmony import */ var _services_cart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/cart */ "./resources/services/cart.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
 //
 //
 //
@@ -4334,11 +4327,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "",
   data: function data() {
     return {
-      product: {}
+      product: {},
+      productId: '',
+      amount: ''
     };
   },
   mounted: function mounted() {
@@ -4352,9 +4348,9 @@ __webpack_require__.r(__webpack_exports__);
         container: this.fullPage ? null : this.$refs.formContainer,
         canCancel: false
       });
-      var id = this.$route.params.product_id;
+      this.productId = this.$route.params.product_id;
       var slug = this.$route.params.product_slug;
-      _services_product__WEBPACK_IMPORTED_MODULE_0__.default.getProduct(id, slug).then(function (response) {
+      _services_product__WEBPACK_IMPORTED_MODULE_1__.default.getProduct(this.productId, slug).then(function (response) {
         _this.product = response.data;
         loader.hide();
       })["catch"](function (error) {
@@ -4364,6 +4360,62 @@ __webpack_require__.r(__webpack_exports__);
 
         loader.hide();
       });
+    },
+    addToCart: function addToCart() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var cartId, loader, item;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                cartId = _this2.$store.getters['cart/getCartId'];
+
+                if (_this2.$store.getters.isAuth) {
+                  _context.next = 3;
+                  break;
+                }
+
+                return _context.abrupt("return", _this2.$router.push({
+                  name: 'login'
+                }));
+
+              case 3:
+                loader = _this2.$loading.show({
+                  container: _this2.fullPage ? null : _this2.$refs.formContainer
+                });
+                item = {
+                  item_id: _this2.productId,
+                  amount: _this2.amount
+                };
+                _services_cart__WEBPACK_IMPORTED_MODULE_2__.default.addItem(cartId, item).then(function (response) {
+                  loader.hide();
+
+                  _this2.$toast.open({
+                    message: response.message,
+                    position: 'top-right',
+                    type: 'success' // all of other options may go here
+
+                  });
+
+                  _this2.$store.dispatch('cart/incrementsCart', _this2.amount);
+
+                  _this2.$router.push({
+                    name: 'cart'
+                  });
+                })["catch"](function (error) {
+                  loader.hide();
+                  console.log(error);
+                });
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     }
   }
 });
@@ -4824,7 +4876,10 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_19__.default({
   }, {
     path: '/cart',
     component: _views_pages_CartPage__WEBPACK_IMPORTED_MODULE_6__.default,
-    name: 'cart'
+    name: 'cart',
+    meta: {
+      requiredAuth: true
+    }
   }, {
     path: '/checkout',
     component: _views_pages_CheckoutPage__WEBPACK_IMPORTED_MODULE_12__.default,
@@ -5284,7 +5339,7 @@ var mutations = {
     state.count = 0;
   },
   incrementsCounter: function incrementsCounter(state, numItems) {
-    state.counter = parseInt(state.counter) + numItems;
+    state.counter = parseInt(state.counter) + parseInt(numItems);
     localStorage.setItem('cart_count', state.counter);
   },
   decrementCart: function decrementCart(state, numItems) {
@@ -30439,7 +30494,7 @@ var render = function() {
                     attrs: {
                       to: {
                         name: "product",
-                        params: { product_id: item.id, slug: item.slug }
+                        params: { product_id: item.id, product_slug: item.slug }
                       }
                     }
                   },
@@ -32832,7 +32887,48 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(1)
+            _c(
+              "div",
+              {
+                staticClass: "product_count",
+                staticStyle: { color: "#000 !important" }
+              },
+              [
+                _c("label", { attrs: { for: "qty" } }, [_vm._v("Quantity:")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.amount,
+                      expression: "amount"
+                    }
+                  ],
+                  staticStyle: { color: "#333 !important" },
+                  attrs: { type: "text", name: "qty", value: "1" },
+                  domProps: { value: _vm.amount },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.amount = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "button primary-btn btn-sm",
+                    attrs: { href: "#" },
+                    on: { click: _vm.addToCart }
+                  },
+                  [_vm._v("Add to Cart")]
+                )
+              ]
+            )
           ])
         ])
       ])
@@ -32850,31 +32946,6 @@ var staticRenderFns = [
           _c("span", [_vm._v("Availibility")]),
           _vm._v(" : In Stock")
         ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "product_count" }, [
-      _c("label", { attrs: { for: "qty" } }, [_vm._v("Quantity:")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "input-text qty",
-        attrs: {
-          type: "text",
-          name: "qty",
-          id: "sst",
-          size: "2",
-          maxlength: "12",
-          value: "1",
-          title: "Quantity:"
-        }
-      }),
-      _vm._v(" "),
-      _c("a", { staticClass: "button primary-btn", attrs: { href: "#" } }, [
-        _vm._v("Add to Cart")
       ])
     ])
   }
