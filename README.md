@@ -37,7 +37,12 @@ cvv: 110
 # default user credentials
 
 # Admin
-seller@test.com | sellertest
+seller@test.com | seller2021
 
 # Buyer 
-buyer@test.com | buyertest
+buyer@test.com | buyer2021
+
+# Api documentation 
+<a href="https://documenter.getpostman.com/view/4791942/TzRXARwK">
+    Documentation
+</a>
