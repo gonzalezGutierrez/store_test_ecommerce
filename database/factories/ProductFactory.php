@@ -28,9 +28,9 @@ class ProductFactory extends Factory
             'name'=>$this->faker->name,
             'slug'=>$this->faker->slug,
             'price'=>$this->faker->numberBetween(100,300),
-            'image_url'=>$this->faker->imageUrl('400','400'),
+            'image_url'=>$this->faker->imageUrl('263','268'),
             'description'=>$this->faker->text,
-            'status'=>$this->faker->boolean
+            'status'=>1
         ];
 
     }

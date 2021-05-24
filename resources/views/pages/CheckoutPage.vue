@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <h3>Billing Details</h3>
-                        <form class="row ">
+                        <form class="row">
                             <div class="col-md-6 form-group p_star">
                                 <label for="">Name</label>
                                 <input type="text" class="form-control" v-model="name" name="name">
@@ -68,36 +68,8 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="order_box">
-
-                            <pre>
-                                {{ payment }}
-                            </pre>
-
-                            <hr>
-
-                            <pre>
-                                {{ payload }}
-                            </pre>
-
                             <h2>Your Order</h2>
-                            <ul class="list">
-                                <li><a href="#"><h4>Product <span>Total</span></h4></a></li>
-                                <li v-for="item in cart.items">
-                                    <a href="#">
-                                        {{ item.name }} ({{ item.amount }})
-                                        <span class="last">${{ item.subtotal }} USD</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="list list_2">
-                                <li><a href="#">Subtotal <span>${{ cart.total }} USD </span></a></li>
-                                <li><a href="#">Total <span>${{ cart.total }} USD</span></a></li>
-                            </ul>
-                            <div class="creat_account">
-                                <input type="checkbox" id="f-option4" name="selector">
-                                <label for="f-option4">I’ve read and accept the </label>
-                                <a href="#">terms & conditions*</a>
-                            </div>
+                            <CartListCardComponent :cart="cart"></CartListCardComponent>
                             <div class="text-center">
                                 <a class="button button-paypal" @click="createToken" href="#"> {{ buttonPaymentMessage }} </a>
                             </div>
@@ -111,9 +83,13 @@
 
 <script>
 import CartService from "../../services/cart";
+import CartListCardComponent from "../../components/carts/CartListCardComponent";
 
 export default {
     name: "CheckoutPage",
+    components:{
+        CartListCardComponent
+    },
 
     data() {
         return {
@@ -130,14 +106,14 @@ export default {
             cart : {},
 
             //customer data
-            name:'Jesus',
-            last_name:'Gonzalez',
-            email:"jesus@gmail.com",
+            name:'',
+            last_name:'',
+            email:"",
 
             address:{
-                address:'calle colinas no 164',
-                state:'Chiapas',
-                country:'Mexico'
+                address:'',
+                state:'',
+                country:''
             },
 
             //card information
@@ -145,7 +121,6 @@ export default {
             expiration_year:"21",
             expiration_month:"12",
             cvv2:"110",
-
 
             // payload payment
             payment:{
@@ -231,6 +206,8 @@ export default {
 
         async createToken() {
 
+            this.buttonPaymentMessage = 'Processing payment...';
+
             this.loading = this.$loading.show({
                 container: this.fullPage ? null : this.$refs.formContainer
             });
@@ -248,7 +225,6 @@ export default {
 
         checkout(response) {
 
-
             //build payment
 
             this.payload.customer = {
@@ -264,14 +240,26 @@ export default {
 
             CartService.checkout(this.cartId,this.payload)
                 .then(response=>{
+
                     this.loading.hide();
-                    console.log ("send index");
+
+                    this.$toast.open({
+                        message:'Order successfully created',
+                        position:'top-right',
+                        type: 'success',
+                        // all of other options may go here
+                    });
+
                     this.$store.dispatch('cart/clearCart');
-                    this.$router.push({name:'index'});
+
+                    this.$router.push({name:'order',params:{order_key:response.order_key}});
+
                 })
                 .catch(error =>{
+
                     console.log(error);
                     this.loading.hide();
+
                 });
         },
     }

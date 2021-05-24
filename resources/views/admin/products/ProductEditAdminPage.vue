@@ -15,7 +15,7 @@
                 <div class="col-lg-6">
                     <div class="login_form_inner register_form_inner">
                         <h3>Create a product</h3>
-                        <form  class="row login_form"  id="register_form" >
+                        <form  class="row login_form">
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Product name" v-model="product.name">
                             </div>
@@ -27,7 +27,7 @@
                                 <textarea  class="form-control textarea-line" rows="4" placeholder="Product description" v-model="product.description"></textarea>
                             </div>
                             <div class="col-md-12 form-group">
-                                <button type="submit" value="submit" class="button button-register w-100"> <i class="fas fa-plus-circle"></i> Add product</button>
+                                <button type="button" @click.prevent="updateProduct" value="submit" class="button button-register w-100"> <i class="fas fa-plus-circle"></i> Update product</button>
                             </div>
                         </form>
                     </div>

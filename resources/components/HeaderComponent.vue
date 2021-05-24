@@ -3,7 +3,10 @@
         <div class="main_menu">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container">
-                    <router-link class="navbar-brand logo_h" :to="{name:'index'}"><img src="/img/logo.png" alt=""></router-link>
+                    <router-link class="navbar-brand logo_h" :to="{name:'index'}">
+                        <img src="https://image.flaticon.com/icons/png/512/3209/3209711.png" style="width:45px;" alt="">
+                        STORE
+                    </router-link>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
@@ -17,25 +20,29 @@
                                 <router-link :to="{name:'products'}" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                    aria-expanded="false">Shop</router-link>
                             </li>
+
                             <li class="nav-item" v-if="userIsGuest"><router-link  :to="{name:'login'}" class="nav-link">Login</router-link></li>
                             <li class="nav-item" v-if="userIsGuest"><router-link  :to="{name:'register'}" class="nav-link">Register</router-link></li>
 
+                            <li class="nav-item"><router-link  :to="{name:'tracking'}" class="nav-link">Order Tracking</router-link></li>
+
                             <li class="nav-item submenu dropdown">
-                                <router-link v-if="userIsAuth" :to="{name:'index'}" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"  aria-expanded="false">
+                                <a href="#" v-if="userIsAuth" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"  aria-expanded="false">
                                     <i class="ti ti-user"></i> {{ user.fullname }}
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="category.html">Profile</a></li>
-                                        <li class="nav-item" v-if="userIsAdmin"><router-link :to="{name:'adminproducts'}" class="nav-link" >Admin</router-link></li>
+                                        <li class="nav-item" v-if="userIsAdmin"><router-link :to="{name:'admin'}" class="nav-link" >Admin</router-link></li>
+                                        <li class="nav-item">
+                                            <router-link to="/orders" class="nav-link">My shopping</router-link>
+                                        </li>
                                         <li class="nav-item"><a @click="logout" class="nav-link">Logout</a></li>
                                     </ul>
-                                </router-link>
+                                </a>
                             </li>
 
                         </ul>
 
                         <ul class="nav-shop">
                             <li class="nav-item"><router-link :to="{name:'cart'}"><button ><i class="ti-shopping-cart"></i><span class="nav-shop__circle"> {{ cartCount }} </span></button></router-link> </li>
-                            <li class="nav-item"><a class="button button-header" href="#">Checkout</a></li>
                         </ul>
 
 
@@ -89,6 +96,10 @@ export default {
 
                 this.$router.push({ name: "login" })
                 this.$store.dispatch('deleteToken');
+
+                this.$store.dispatch('cart/clearCart');
+
+                this.$router.push({name:'index'});
 
                 loader.hide();
 

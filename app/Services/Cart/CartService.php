@@ -13,6 +13,7 @@ use App\Services\BaseServiceInterface;
 use App\Services\Orders\OrderService;
 use App\Services\Products\ProductService;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CartService   implements  BaseServiceInterface
@@ -42,6 +43,13 @@ class CartService   implements  BaseServiceInterface
 
     public function update($request, $id)
     {
+
+        $cart = Cart::findOrFail($id);
+
+        $cart->fill($request)->save();
+
+        //return update cart with user_id assigment
+        return $cart;
 
     }
 
@@ -120,7 +128,9 @@ class CartService   implements  BaseServiceInterface
 
             $payment = $paymentFactory->initialize('card');
 
-            $request['cart'] = Cart::findOrFail($cartId);
+            $cart = $this->update(['user_id'=>Auth::user()->id],$cartId);
+
+            $request['cart'] = $cart;
 
             $paymentResponse = $payment->pay($request);
 

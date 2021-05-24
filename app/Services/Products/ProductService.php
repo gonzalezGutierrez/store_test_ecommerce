@@ -51,7 +51,7 @@ class ProductService implements  BaseServiceInterface
 
         $request['slug'] = $this->generateSlug($request['name']);
 
-        $request['image_url'] = $this->handleUploadImage($request['image']);
+        $request['image_url'] = url('').'/images/'.$this->handleUploadImage($request['image']);
 
         Product::create($request);
 

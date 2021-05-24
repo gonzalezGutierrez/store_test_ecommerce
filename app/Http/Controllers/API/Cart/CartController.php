@@ -7,6 +7,7 @@ use App\Http\Requests\CheckoutRequest;
 use App\Services\Cart\CartService;
 use App\Services\Products\ProductService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {

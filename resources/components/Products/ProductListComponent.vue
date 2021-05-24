@@ -3,52 +3,9 @@
        <div class="container">
            <div class="row">
                <div class="col-xl-12 col-lg-12 col-md-12">
-
-                   <div class="filter-bar d-flex flex-wrap align-items-center">
-                       <div class="sorting">
-                           <select>
-                               <option value="1">Default sorting</option>
-                               <option value="1">Default sorting</option>
-                               <option value="1">Default sorting</option>
-                           </select>
-                       </div>
-                       <div class="sorting mr-auto">
-                           <select>
-                               <option value="1">Show 12</option>
-                               <option value="1">Show 12</option>
-                               <option value="1">Show 12</option>
-                           </select>
-                       </div>
-                       <div>
-                           <div class="input-group filter-bar-search">
-                               <input type="text" placeholder="Search">
-                               <div class="input-group-append">
-                                   <button type="button"><i class="ti-search"></i></button>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-
                    <section class="lattest-product-area pb-40 category-list">
                        <div class="row">
-                           <div class="col-md-6 col-lg-4" v-for="product in products">
-
-                                   <div class="card text-center card-product">
-                                       <div class="card-product__img">
-                                           <img class="card-img w-50" :src="product.image_url" alt="">
-                                           <ul class="card-product__imgOverlay">
-                                               <li><button @click="addToCart(product.id)"><i class="ti-shopping-cart"></i></button></li>
-                                           </ul>
-                                       </div>
-                                       <div class="card-body">
-                                           <router-link class="text-black" :to="{name:'product',params:{product_id:product.id,product_slug:product.slug}}">
-                                               <h4 class="card-product__title"><a href="#">{{ product.name }}</a></h4>
-                                               <p class="card-product__price">${{ product.price }} USD </p>
-                                           </router-link>
-                                       </div>
-                                   </div>
-
-                           </div>
+                           <ProductItemComponent :key="product.id" :data-index="index" v-bind:product="product" v-for="(product,index) in products"></ProductItemComponent>
                        </div>
                        <nav aria-label="Page navigation example">
                            <ul class="pagination">
@@ -70,9 +27,13 @@
 <script>
 import ProductService from "../../services/product";
 import CartService from '../../services/cart';
+import ProductItemComponent from "./ProductItemComponent";
 
 export default {
     name: "ProductListComponent",
+    components:{
+        ProductItemComponent
+    },
     computed:{
         isUserAdmin(){
             return this.$store.getters.isUserAdmin;
@@ -96,40 +57,6 @@ export default {
     },
 
     methods: {
-
-        productDelete(id) {
-
-            this.$swal({
-                title: 'Remove product',
-                text: "Are you sure you want to remove this product?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((desicion) => {
-
-                if (desicion.value) {
-
-                    this.$swal('Great', 'Product deleted!', 'success')
-                        .then(() => {
-
-                            let loader = this.$loading.show({
-                                container: this.fullPage ? null : this.$refs.formContainer
-                            });
-
-                            ProductService.deleteProduct(id)
-                                .then((response) => {
-                                    this.getPage(this.paginate.current_page);
-                                    loader.hide();
-                                }).catch((error => {
-                                    loader.hide();
-                                })
-                            );
-                        });
-                }
-            });
-        },
 
         getPageOne() {
             this.getProducts(this.paginate.current_page);
@@ -181,35 +108,6 @@ export default {
         setCurrentPage(page) {
             this.paginate.current_page = page;
         },
-
-        async addToCart(productId) {
-
-
-            let cartId = this.$store.getters['cart/getCartId'];
-
-            let loader = this.$loading.show({
-                container: this.fullPage ? null : this.$refs.formContainer
-            });
-
-
-            CartService.addItem(cartId,{item_id:productId})
-                .then((response)=>{
-                    loader.hide();
-                    this.$toast.open({
-                        message: response.message,
-                        position:'top-right',
-                        type: 'success',
-                        // all of other options may go here
-                    });
-                    this.$store.dispatch('cart/incrementsCart',1);
-                })
-                .catch((error)=>{
-                    loader.hide();
-                    console.log(error);
-                });
-
-
-        }
 
 
 

@@ -1,11 +1,10 @@
 <template>
-    <div class="small-container page-not-found">
-        <div class="page-not-found-center">
-            <h1 class="title">Page Not Found</h1>
-            <router-link :to="{name:'index'}" class="btn">Go to home</router-link>
-        </div>
 
+    <div class="container text-center mt-5">
+        <h1 style="font-size: 120px; text-align: center;">Page Not Found</h1> <br>
+        <router-link :to="{name:'index'}" class="btn btn-primary"> <i class="fas fa-home"></i> Go to home</router-link>
     </div>
+
 </template>
 
 <script>

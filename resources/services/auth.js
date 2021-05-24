@@ -9,7 +9,9 @@ export default {
                 password:userCredentials.password
             }).then((response)=>{
                 const dataToken = response.data.data_token;
+                const user      = dataToken.user;
                 localStorage.setItem('access_token',dataToken.token);
+                localStorage.setItem('user_assigment',user.id);
                 resolve(dataToken);
             }).catch((error)=>{
                 reject(error);

@@ -45,27 +45,31 @@ router.beforeEach(async (to,from,next) => {
     if (store.getters.isAuth)
         await store.dispatch('freshProfile');
 
-
     if (to.matched.some(record => record.meta.requiredAdmin)) {
         if (store.getters.isAuth && store.getters.isUserAdmin) {
-            next()
+            next();
         }else{
             next({name:'404'});
         }
     }
 
-
-    if (to.matched.some(record => record.meta.guest)) {
-
-        console.log(store.getters.isAuth);
-
+    if ( to.matched.some(record => record.meta.requiredAuth) ) {
         if (store.getters.isAuth) {
-            next({name:'index'});
+            next();
+        }else{
+            next({name:'login'});
         }
-        next();
-
     }else{
         next();
+    }
+
+
+    if (to.matched.some(record => record.meta.guest)) {
+        if (store.getters.isAuth) {
+            next({name:'index'});
+        }else{
+            next();
+        }
     }
 
 

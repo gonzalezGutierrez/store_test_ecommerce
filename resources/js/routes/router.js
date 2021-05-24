@@ -16,6 +16,11 @@ import ProductCreateAdminPage from "../../views/admin/products/ProductCreateAdmi
 import UserListAdminPage from "../../views/admin/users/UserListAdminPage";
 import UserEditAdminPage from "../../views/admin/users/UserEditAdminPage";
 import CheckoutPage from "../../views/pages/CheckoutPage";
+import TrakingPage from "../../views/pages/TrakingPage";
+import OrderPage from "../../views/pages/OrderPage";
+import OrdersPage from "../../views/pages/OrdersPage";
+import IndexAdmin from "../../views/admin/IndexAdmin";
+import OrdersListAdmin from "../../views/admin/orders/OrdersListAdmin";
 
 
 Vue.use(VueRouter);
@@ -23,6 +28,23 @@ Vue.use(VueRouter);
 const router = new VueRouter({
     mode:'history',
     routes:[
+
+        {
+            path: '/404',
+            name: '404',
+            component: PageNotFound,
+        },
+
+        {
+            path: '*',
+            redirect: '/404',
+        },
+
+        {
+            path:'/admin', component:IndexAdmin, name:'admin', meta:{
+                requiredAdmin: true
+            }
+        },
 
         {
             path:'/admin/products' , component:ProductListAdminPage, name:'adminproducts',meta:{
@@ -55,6 +77,12 @@ const router = new VueRouter({
         },
 
         {
+            path:'/admin/orders', component:OrdersListAdmin, name:'adminorders', meta:{
+                requiredAdmin:true
+            }
+        },
+
+        {
             path:'/', component:IndexPage,name:'index'
         },
 
@@ -71,7 +99,23 @@ const router = new VueRouter({
         },
 
         {
-            path:'/checkout' , component: CheckoutPage, name:'checkout'
+            path:'/checkout' , component: CheckoutPage, name:'checkout',meta:{
+                requiredAuth: true
+            }
+        },
+
+        {
+            path:'/tracking', component: TrakingPage , name:'tracking'
+        },
+
+        {
+            path:'/order/:order_key', component: OrderPage,  name:'order'
+        },
+
+        {
+            path:'/orders', component:OrdersPage,meta:{
+                requiredAuth:true
+            }
         },
 
         {
@@ -84,15 +128,6 @@ const router = new VueRouter({
             path:'/register' , component:RegisterPage, name:'register',meta:{
                 guest:true
             }
-        },
-        {
-            path: '/404',
-            name: '404',
-            component: PageNotFound,
-        },
-        {
-            path: '*',
-            redirect: '/404',
         }
 
     ]

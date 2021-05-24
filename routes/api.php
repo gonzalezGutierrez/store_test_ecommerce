@@ -39,5 +39,12 @@ Route::group(['prefix'=>'v1'],function(){
         Route::delete('carts/{cart_id}/items/{item_id}',[\App\Http\Controllers\API\Cart\CartController::class,'removeItem']);
     });
 
-    Route::post('carts/{cart_id}/checkout',[\App\Http\Controllers\API\Cart\CartController::class,'checkout']);
+    Route::post('carts/{cart_id}/checkout',[\App\Http\Controllers\API\Cart\CartController::class,'checkout'])->middleware('auth:api');
+
+    Route::get('orders/{order_key}',[\App\Http\Controllers\Api\Orders\OrderController::class,'show']);
+
+    Route::group(['middleware'=>['auth:api']],function(){
+        Route::get('orders',[\App\Http\Controllers\Api\Orders\OrderController::class,'index']);
+    });
+
 });

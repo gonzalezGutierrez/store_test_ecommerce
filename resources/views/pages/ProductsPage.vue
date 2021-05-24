@@ -1,5 +1,4 @@
 <template>
-
     <ProductListComponent></ProductListComponent>
 </template>
 

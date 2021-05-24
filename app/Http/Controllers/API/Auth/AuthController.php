@@ -22,7 +22,8 @@ class AuthController extends Controller
              $user = Auth::user();
              $success['token'] = $user->createToken('test_ecommerce')->accessToken;
              $success['type']  = 'Bearer ';
-             return response()->json(['data_token'=>$success]);
+             $success['user']  = $user;
+            return response()->json(['data_token'=>$success]);
         }else{
             return response()->json(['error'=>'Wrong username/password combination.'],Response::HTTP_UNAUTHORIZED);
         }
